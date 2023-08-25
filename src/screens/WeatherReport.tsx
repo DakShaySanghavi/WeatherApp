@@ -222,14 +222,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     otherDaysMainView: {
-        flex: 1,
-        paddingBottom: resizeUI(16)
+        flex: 1
     },
     otherDaysView: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: Colors.BG_LIGHT,
+        borderRadius: resizeUI(16),
         padding: resizeUI(24),
         marginBottom: resizeUI(24)
     },

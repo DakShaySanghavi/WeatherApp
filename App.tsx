@@ -39,7 +39,7 @@ const App: React.FC = () => {
 
           tabBarShowLabel: false,
           tabBarStyle: {
-            height: isIOS ? resizeUI(134) : resizeUI(164),
+            height: isIOS ? resizeUI(134) : resizeUI(100),
             backgroundColor: "#191919",
             borderTopWidth: 0
           },
