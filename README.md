@@ -1,7 +1,8 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # What we achieve
-[Demo](https://drive.google.com/file/d/1azdjSWel7rB10zTK3uiPoIpa2VcNzNd5/view?usp=sharing)
+
+![Demo](https://github.com/DakShaySanghavi/WeatherApp/assets/141251903/2a672d0b-fb18-476d-b177-38927adf7d51)
 
 # Base dependencies
 [@react-native-async-storage/async-storage](@react-native-async-storage/async-storage) for store data in locally   
