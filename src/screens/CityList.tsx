@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { TextInput, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+
+import CustomTextField from '../components/CustomTextField'
 
 import { AppContext } from '../utils/AppContext'
 import { resizeUI } from '../utils/Common'
@@ -34,7 +36,7 @@ const CityList: React.FC = (props) => {
 
     const renderCityListView = () => {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, marginTop: resizeUI(6) }}>
                 <FlatList
                     data={searchValue ? cityListData.filter((city: any) => city.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : cityListData}
                     initialNumToRender={15}
@@ -46,19 +48,15 @@ const CityList: React.FC = (props) => {
 
     const renderSearchView = () => {
         return (
-            <View style={styles.searchView}>
-                <TextInput
-                    style={styles.searchInputView}
-                    cursorColor={Colors.LIGHT}
-                    selectionColor={Colors.LIGHT}
-                    placeholderTextColor={Colors.GREY}
+            <>
+                <CustomTextField
                     placeholder={"Search City"}
                     value={searchValue}
-                    onChangeText={(value) => {
+                    onChangeText={(value: any) => {
                         setSearchValue(value)
                     }}
                 />
-            </View>
+            </>
         )
     }
 
@@ -115,17 +113,6 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: "center",
         marginRight: resizeUI(32)
-    },
-    searchView: {
-        backgroundColor: Colors.BG_LIGHT,
-        borderRadius: resizeUI(8),
-        marginBottom: resizeUI(6)
-    },
-    searchInputView: {
-        height: resizeUI(48),
-        paddingHorizontal: resizeUI(16),
-        color: Colors.LIGHT,
-        fontSize: resizeUI(18)
     },
     itemView: {
         backgroundColor: Colors.BG_LIGHT,

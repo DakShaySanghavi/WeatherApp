@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from "react-native"
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native"
+
+import CustomTextField from '../components/CustomTextField'
 
 import { resizeUI, width } from '../utils/Common'
 import { AppContext } from '../utils/AppContext'
@@ -34,20 +36,16 @@ const OnBoarding: React.FC = (props) => {
 
     const renderTextInputView = () => {
         return (
-            <View style={styles.textInputView}>
-                <TextInput
-                    style={styles.userNameInputView}
-                    cursorColor={Colors.LIGHT}
-                    selectionColor={Colors.LIGHT}
-                    placeholderTextColor={Colors.GREY}
+            <>
+                <CustomTextField
                     placeholder={"Username"}
                     value={userName}
-                    onChangeText={(value) => {
+                    onChangeText={(value: any) => {
                         setError("")
                         setUserName(value)
                     }}
                 />
-            </View>
+            </>
         )
     }
 
@@ -98,16 +96,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: resizeUI(48),
         marginBottom: resizeUI(150)
-    },
-    textInputView: {
-        backgroundColor: Colors.BG_LIGHT,
-        borderRadius: resizeUI(8),
-    },
-    userNameInputView: {
-        height: resizeUI(54),
-        paddingHorizontal: resizeUI(16),
-        color: Colors.LIGHT,
-        fontSize: resizeUI(18)
     },
     submitButton: {
         backgroundColor: Colors.SELECTED,
