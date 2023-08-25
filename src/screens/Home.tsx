@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import moment from 'moment'
 
+import CustomBox from '../components/CustomBox'
+
 import { API_KEY, resizeUI } from '../utils/Common'
 import API_ENDPOINTS from '../utils/ApiConstants'
 import { AppContext } from '../utils/AppContext'
@@ -84,27 +86,10 @@ const Home: React.FC = (props) => {
 
     const renderHourlyInfoView = () => {
         return (
-            <View style={styles.hourlyMainView}>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-
-                    {todaysWeatherData.map((item: any, index: any) => {
-                        return (
-                            <View key={index} style={[styles.hourlyView, { marginLeft: index == 0 ? 0 : resizeUI(16) }]}>
-                                <Text style={styles.date}>{item?.dt_txt?.split(" ")[1]?.split(":")[0] + ":" + item?.dt_txt?.split(" ")[1]?.split(":")[1]}</Text>
-                                <Image
-                                    source={{ uri: API_ENDPOINTS.IMAGE_URL + `${item?.weather[0]?.icon}.png` }}
-                                    style={{
-                                        height: resizeUI(48),
-                                        width: resizeUI(48)
-                                    }} />
-                                <Text style={styles.userNameTxt}>{`${item?.main?.temp}°`}</Text>
-                            </View>
-                        )
-                    })
-                    }
-
-                </ScrollView>
-            </View>
+            <>
+                <CustomBox
+                    data={todaysWeatherData} />
+            </>
         )
     }
 
@@ -348,16 +333,6 @@ const styles = StyleSheet.create({
     tabTxt: {
         fontSize: resizeUI(16),
         fontWeight: "bold"
-    },
-    hourlyMainView: {
-        flexDirection: "row"
-    },
-    hourlyView: {
-        width: resizeUI(95),
-        backgroundColor: Colors.BG_LIGHT,
-        paddingVertical: resizeUI(16),
-        borderRadius: resizeUI(20),
-        alignItems: "center"
     },
     errorTxt: {
         fontSize: resizeUI(16),
