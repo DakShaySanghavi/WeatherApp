@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 
-import { WeatherReport, CityList, Home, Locations, OnBoarding, Account } from './src/screens';
+import { WeatherReport, CityList, Home, OnBoarding, Account } from './src/screens';
 
+import { fetchUserName, saveUserName } from './src/utils/LocalStorage';
 import { isIOS, resizeUI } from './src/utils/Common';
 import Colors from './src/theme/Colors';
 import Images from './src/theme/Images';
@@ -14,7 +15,22 @@ import Images from './src/theme/Images';
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
 
+let isUserLoggedIn: any = null
+
 const App: React.FC = () => {
+
+  const [isLocalData, setIsLocalData] = useState(false)
+
+  useEffect(() => {
+    checkIsLoggedInUser()
+  }, [])
+
+  const checkIsLoggedInUser = async () => {
+    isUserLoggedIn = await fetchUserName()
+    saveUserName(isUserLoggedIn)
+
+    setIsLocalData(true)
+  }
 
   function MyTabs() {
     return (
@@ -57,27 +73,26 @@ const App: React.FC = () => {
           },
         })}>
         <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-        {/* <Tab.Screen name="Locations" component={Locations} options={{ headerShown: false }} /> */}
         <Tab.Screen name="WeatherReport" component={WeatherReport} options={{ headerShown: false }} />
-        {/* <Tab.Screen name="Account" component={Account} options={{ headerShown: false }} /> */}
+        <Tab.Screen name="Account" component={Account} options={{ headerShown: false }} />
       </Tab.Navigator>
     );
   }
 
   return (
-    <SafeAreaProvider>
+    isLocalData
+    && (<SafeAreaProvider >
       <StatusBar barStyle="light-content" backgroundColor={Colors.BG} />
       <SafeAreaView style={{ backgroundColor: Colors.BG }} />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={"OnBoarding"} screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
+        <Stack.Navigator initialRouteName={isUserLoggedIn ? "MyTabs" : "OnBoarding"} screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
           <Stack.Screen name="OnBoarding" component={OnBoarding} options={{ headerShown: false }} />
           <Stack.Screen name="CityList" component={CityList} options={{ headerShown: false }} />
           <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          <Stack.Screen name="Locations" component={Locations} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaProvider>
+    </SafeAreaProvider>)
   );
 }
 

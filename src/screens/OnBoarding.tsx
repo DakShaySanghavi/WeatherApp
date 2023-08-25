@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native"
 
 import CustomTextField from '../components/CustomTextField'
+import CustomButton from '../components/CustomButton'
 
 import { resizeUI, width } from '../utils/Common'
 import { AppContext } from '../utils/AppContext'
@@ -26,11 +27,11 @@ const OnBoarding: React.FC = (props) => {
 
     const submitButton = () => {
         return (
-            <TouchableOpacity
-                style={styles.submitButton}
-                onPress={() => submitAction()}>
-                <Text style={styles.btnTxt}>Submit</Text>
-            </TouchableOpacity>
+            <CustomButton
+                label={"Submit"}
+                onPress={() => submitAction()}
+                viewStyle={{ width: width / 2 }}
+            />
         )
     }
 
@@ -72,6 +73,7 @@ const OnBoarding: React.FC = (props) => {
                 {renderAppName()}
 
                 {renderTextInputView()}
+
                 {error
                     && <Text style={styles.errorTxt}>{error}</Text>}
 
