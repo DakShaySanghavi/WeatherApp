@@ -1,5 +1,20 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+# What we achieve
+[Demo](https://drive.google.com/file/d/1azdjSWel7rB10zTK3uiPoIpa2VcNzNd5/view?usp=sharing)
+
+# Base dependencies
+[@react-native-async-storage/async-storage](@react-native-async-storage/async-storage) for store data in locally   
+[moment](https://www.npmjs.com/package/moment) for format data into desire format
+### Below all Dependencies for Navigation
+[@react-navigation/bottom-tabs](https://www.npmjs.com/package/@react-navigation/bottom-tabs)   
+[@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)   
+[@react-navigation/stack](https://www.npmjs.com/package/@react-navigation/stack)
+
+# What would i do if i had more time
+1. Saved Location Screen - Save multiple location data 
+2. Show multiple location data in swiperview
+
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
