@@ -28,7 +28,7 @@ const CityList: React.FC = (props) => {
                 }
             }}>
                 <View style={styles.itemView}>
-                    <Text style={styles.itemTxt}>{item?.name}</Text>
+                    <Text style={styles.itemTxt}>{item?.city}</Text>
                 </View>
             </TouchableOpacity>
         )
@@ -38,7 +38,7 @@ const CityList: React.FC = (props) => {
         return (
             <View style={{ flex: 1, marginTop: resizeUI(6) }}>
                 <FlatList
-                    data={searchValue ? cityListData.filter((city: any) => city.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : cityListData}
+                    data={searchValue ? cityListData.filter((city: any) => city.city.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : cityListData}
                     initialNumToRender={15}
                     renderItem={({ item, index }) => renderItemList(item, index)}
                 />

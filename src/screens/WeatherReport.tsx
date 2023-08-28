@@ -22,10 +22,10 @@ const WeatherReport: React.FC = (props) => {
     const [error, setError] = useState("")
 
     useEffect(() => {
-        getWeatherDataList(context?.cityData?.coord?.lat, context?.cityData?.coord?.lon)
+        getWeatherDataList(context?.cityData?.latitude, context?.cityData?.longitude)
 
         const subscribeFocus = props.navigation.addListener('focus', () => {
-            getWeatherDataList(context?.cityData?.coord?.lat, context?.cityData?.coord?.lon)
+            getWeatherDataList(context?.cityData?.latitude, context?.cityData?.longitude)
         })
 
         const unSubscribeFocus = props.navigation.addListener('blur', () => {

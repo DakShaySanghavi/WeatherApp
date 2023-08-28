@@ -34,7 +34,7 @@ const Home: React.FC = (props) => {
         getDayStatus()
 
         const subscribeFocus = props.navigation.addListener('focus', () => {
-            getWeatherDataList(context?.cityData?.coord?.lat, context?.cityData?.coord?.lon)
+            getWeatherDataList(context?.cityData?.latitude, context?.cityData?.longitude)
         })
 
         return () => {
@@ -168,7 +168,7 @@ const Home: React.FC = (props) => {
         return (
             <View style={styles.mainInfoView}>
 
-                <Text style={styles.userNameTxt}>{context?.cityData?.name}</Text>
+                <Text style={styles.userNameTxt}>{context?.cityData?.city}</Text>
 
                 <Text style={[styles.degTxt, { fontWeight: "normal" }]}>
                     <Text style={styles.degTxt}>{todaysWeatherData[0]?.main?.temp}</Text>
