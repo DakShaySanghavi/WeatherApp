@@ -20,7 +20,6 @@ const Home: React.FC = (props) => {
     const context = useContext(AppContext)
 
     let today = new Date()
-    let currentDay = new Date().toLocaleString('en-us', { weekday: 'long' })
 
     let currentHour = today.getHours()
 
@@ -101,10 +100,11 @@ const Home: React.FC = (props) => {
                         <TouchableOpacity
                             key={index}
                             onPress={() => {
-                                setSelectedTab(index)
                                 if (index == 1) {
                                     setSelectedTab(0)
                                     props.navigation.navigate("WeatherReport")
+                                } else {
+                                    setSelectedTab(index)
                                 }
                             }}>
                             <View style={[styles.tabView, { backgroundColor: selectedTab == index ? Colors.SELECTED : Colors.TRANSPARENT }]}>
@@ -198,7 +198,7 @@ const Home: React.FC = (props) => {
 
                     <Text style={styles.userNameTxt}>{context.userName}!</Text>
 
-                    <Text style={styles.date}>{`${moment(today).format("Do MMMM")}, ${currentDay.split(",")[0]}`}</Text>
+                    <Text style={styles.date}>{`${moment(today).format("Do MMMM, dddd")}`}</Text>
 
                 </View>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import moment from 'moment';
 
 import API_ENDPOINTS from '../utils/ApiConstants';
 import { resizeUI } from '../utils/Common';
@@ -19,7 +20,7 @@ const CustomBox: React.FC<Props> = props => {
                     {props.data.map((item: any, index: any) => {
                         return (
                             <View key={index} style={[styles.hourlyView, { marginLeft: index == 0 ? 0 : resizeUI(16) }]}>
-                                <Text style={styles.date}>{item?.dt_txt?.split(" ")[1]?.split(":")[0] + ":" + item?.dt_txt?.split(" ")[1]?.split(":")[1]}</Text>
+                                <Text style={styles.date}>{moment(item?.dt_txt).format("HH:mm")}</Text>
                                 <Image
                                     source={{ uri: API_ENDPOINTS.IMAGE_URL + `${item?.weather[0]?.icon}.png` }}
                                     style={{

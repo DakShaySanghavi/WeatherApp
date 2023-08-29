@@ -38,7 +38,7 @@ const CityList: React.FC = (props) => {
         return (
             <View style={{ flex: 1, marginTop: resizeUI(6) }}>
                 <FlatList
-                    data={searchValue ? cityListData.filter((city: any) => city.city.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : cityListData}
+                    data={searchValue ? cityListData.filter((city: any) => city.city.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1) : cityListData.sort((a: any, b: any) => a.city.localeCompare(b.city))}
                     initialNumToRender={15}
                     renderItem={({ item, index }) => renderItemList(item, index)}
                 />

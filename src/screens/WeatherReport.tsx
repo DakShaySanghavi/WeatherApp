@@ -79,7 +79,7 @@ const WeatherReport: React.FC = (props) => {
 
                     for (let i = 1; i <= 5; i++) {
                         result?.list?.map((item: any, index: any) => {
-                            if (item?.dt_txt?.split(" ")[0] != moment(today).format("YYYY-MM-DD")) {
+                            if (moment(item?.dt_txt).format("YYYY-MM-DD") != moment(today).format("YYYY-MM-DD")) {
                                 tempData.push(item)
                             }
                         })
@@ -91,7 +91,7 @@ const WeatherReport: React.FC = (props) => {
 
                     for (const item of tempData) {
                         const dtTxt = item.dt_txt;
-                        const date = dtTxt.split(" ")[0];
+                        const date = moment(dtTxt).format("YYYY-MM-DD");
 
                         if (!uniqueDateSet.has(date)) {
                             uniqueDateSet.add(date);
@@ -99,12 +99,15 @@ const WeatherReport: React.FC = (props) => {
                         }
                     }
                     setWeatherData(uniqueDates)
+
                 } else {
                     setError(result?.message)
                 }
+
                 setTimeout(() => {
                     setIsLoading(false)
                 }, 500)
+
             })
             .catch(error => {
                 setError(error.message)
@@ -129,7 +132,7 @@ const WeatherReport: React.FC = (props) => {
                                     }}>
                                     <View style={styles.otherDaysView}>
 
-                                        <View>
+                                        <View style={{ flex: 1 }}>
                                             <Text style={styles.dayTxt}>{moment(item?.dt_txt).format("dddd")}</Text>
                                             <Text style={styles.dateTxt}>{moment(item?.dt_txt).format("Do MMMM")}</Text>
                                         </View>
@@ -141,7 +144,7 @@ const WeatherReport: React.FC = (props) => {
                                                 width: resizeUI(48)
                                             }} />
 
-                                        <Text style={styles.dayTxt}>{`${item?.main?.temp}°`}</Text>
+                                        <Text style={[styles.dayTxt, { flex: 1, textAlign: "right" }]}>{`${item?.main?.temp}°`}</Text>
                                     </View>
                                 </TouchableOpacity>
 
